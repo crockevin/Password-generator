@@ -3,13 +3,14 @@ var lowerCase = "abcdefghijklmnopqrstuvwxyz"
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var numbers = "1234567890"
 var symbols = "!@#$%^&*()-_+=[]{};:,<>?./|"
-var randomPassword = ""
+
 function generatePassword() {
-   passwordLength = prompt("Please choose a number 8-128 as the length of your password")
-   if(passwordLength == null){
+  var randomPassword = ""
+  passwordLength = prompt("Please choose a number 8-128 as the length of your password")
+  if (passwordLength == null) {
     return null
-   }
-   passwordLength = parseInt(passwordLength)
+  }
+  passwordLength = parseInt(passwordLength)
   if (!(passwordLength > 7 && passwordLength < 129)) {
     alert("Not a valid input")
     generatePassword()
@@ -20,20 +21,24 @@ function generatePassword() {
   var hasUpperCase = confirm("Do you want your password to have upper case letters")
   var hasNumbers = confirm("Do you want your password to have numbers")
   var hasSymbols = confirm("Do you want your password to have symbols")
-  if(hasLowerCase){
+  if (hasLowerCase) {
     listOfCharacters += lowerCase
+    randomPassword += lowerCase.charAt(Math.floor(Math.random() * lowerCase.length))
   }
-  if(hasUpperCase){
+  if (hasUpperCase) {
     listOfCharacters += upperCase
+    randomPassword += upperCase.charAt(Math.floor(Math.random() * upperCase.length))
   }
-  if(hasNumbers){
+  if (hasNumbers) {
     listOfCharacters += numbers
+    randomPassword += numbers.charAt(Math.floor(Math.random() * numbers.length))
   }
-  if(hasSymbols){
+  if (hasSymbols) {
     listOfCharacters += symbols
+    randomPassword += symbols.charAt(Math.floor(Math.random() * symbols.length))
   }
-  for(var i = 0; i < passwordLength; i++){
-    randomPassword += listOfCharacters.charAt(Math.floor(Math.random()* listOfCharacters.length))
+  for (var i = randomPassword.length; i < passwordLength; i++) {
+    randomPassword += listOfCharacters.charAt(Math.floor(Math.random() * listOfCharacters.length))
   }
   return randomPassword
 }
@@ -44,7 +49,6 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 
 }
